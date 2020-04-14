@@ -3,10 +3,7 @@ package human_resource.model;
 import human_resource.entity.Employees;
 import human_resource.helper.ConnectionHelper;
 
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -157,6 +154,15 @@ public class EmployeeModel {
         }
 
     }
-
+    public boolean clearData() {
+        try {
+            Statement stt = ConnectionHelper.getConnection().createStatement();
+            stt.execute("truncate table accounts");
+            return true;
+        } catch (Exception var2) {
+            System.err.println("Error: " + var2.getMessage());
+            return false;
+        }
+    }
 
 }
